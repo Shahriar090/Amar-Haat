@@ -1,19 +1,23 @@
 {
-  "name": "amar-haat",
-  "version": "1.0.0",
-  "description": "",
-  "private": true,
-  "main": "index.js",
-  "scripts": {
-    "prepare": "husky install"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.14.0",
-  "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "husky": "^9.1.7"
-  }
+	"name": "amar-haat",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"main": "index.js",
+	"scripts": {
+		"prepare": "husky install",
+		"format": "biome format --fix .",
+		"lint": "biome check .",
+		"lint:fix": "biome check --fix ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.14.0",
+	"devDependencies": {
+		"@biomejs/biome": "2.3.2",
+		"@commitlint/cli": "^20.1.0",
+		"@commitlint/config-conventional": "^20.0.0",
+		"husky": "^9.1.7"
+	}
 }
