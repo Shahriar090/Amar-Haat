@@ -6,8 +6,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc",
-		 "start:dev": "tsx watch src/server.ts",
-  "start:prod": "node dist/server.js"
+		"start:dev": "tsx watch src/server.ts",
+		"start:prod": "node dist/server.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -29,6 +29,7 @@
 		"cors": "^2.8.5",
 		"dotenv": "^17.2.3",
 		"express": "^5.1.0",
+		"http-status": "^2.1.0",
 		"mongodb": "^6.20.0",
 		"mongoose": "^8.19.2"
 	}
