@@ -1,10 +1,8 @@
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import type { Server } from 'node:http';
 import app from './app.js';
-dotenv.config();
-const PORT = process.env.PORT || 3000;
-
+import config from './app/config/index.js';
+const PORT = config.port || 3000;
 // biome-ignore lint/correctness/noUnusedVariables: <the variable 'server' will be used later>
 let server: Server;
 async function main() {

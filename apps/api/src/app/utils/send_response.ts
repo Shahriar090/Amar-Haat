@@ -17,3 +17,8 @@ const sendResponse = <T>(res: Response, data: ResponseType<T>) => {
 };
 
 export default sendResponse;
+
+// This utility function ensures that all API responses follow a consistent structure.
+// The generic <T> allows the `data` field to carry any type (object, array, string, etc.)
+// while preserving type safety. The `data` parameter must match the ResponseType<T> shape,
+// and the function sends this standardized response to the client.

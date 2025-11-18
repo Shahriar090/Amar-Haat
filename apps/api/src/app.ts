@@ -3,7 +3,7 @@ import cors from 'cors';
 import express, { type Application, type Request, type Response } from 'express';
 import globalErrorHandler from './app/middlewares/global_error_handler.js';
 import notFound from './app/middlewares/not_found.js';
-import router from './app/module_routes/module_routes.js';
+// import router from './app/module_routes/module_routes.js';
 const app: Application = express();
 
 app.use(express.json());
@@ -22,7 +22,7 @@ app.use(
 );
 
 // application routes
-app.use('/api/v1', router);
+// app.use('/api/v1', router);
 
 app.get('/', (_req: Request, res: Response) => {
 	res.send('Hello from amar-haat server.!');
