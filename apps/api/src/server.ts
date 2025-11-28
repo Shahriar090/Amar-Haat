@@ -7,7 +7,7 @@ const PORT = config.port || 3000;
 let server: Server;
 async function main() {
 	try {
-		await mongoose.connect(process.env.MONGODB_URI as string);
+		await mongoose.connect(config.db_uri);
 		console.log('🚀 Database Connected Successfully');
 
 		server = app.listen(PORT, () => {

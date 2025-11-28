@@ -4,6 +4,7 @@
 	"description": "",
 	"private": true,
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"prepare": "husky install",
 		"format": "biome format --fix .",
