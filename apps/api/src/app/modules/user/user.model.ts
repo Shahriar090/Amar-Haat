@@ -1,5 +1,7 @@
 import type { UserNameType } from '@shared/schemas/common/user_name.schema.js';
+import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
+import config from '../../config/index.js';
 import type { IUser, UserModel } from './user.interface.js';
 
 const UserNameSchema = new Schema<UserNameType>(
@@ -42,4 +44,17 @@ export const UserSchema = new Schema<IUser, UserModel>(
 UserSchema.statics.isUserExists = async function (email: string) {
 	return this.findOne({ email }).select('+password');
 };
+
+// hash the password before saving into DB
+UserSchema.pre('save', async function (next) {
+	if (!this.isModified('password')) return next();
+
+	try {
+		this.password = await bcrypt.hash(this.password, Number(config.bcrypt_salt_round));
+		next();
+	} catch (err: unknown) {
+		next(err as Error);
+	}
+});
+
 export const User = model<IUser, UserModel>('User', UserSchema);
