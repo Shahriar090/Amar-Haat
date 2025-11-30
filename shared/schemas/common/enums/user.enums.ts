@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const GenderEnum = z.enum(['male', 'female', 'others']);
-export const RoleEnum = z.enum(['customer', 'seller', 'admin']).default('customer');
+export const RoleEnum = z.enum(['customer', 'seller', 'admin']).default('customer').optional();
 export const SellerStatusEnum = z
 	.enum(['none', 'pending', 'approved', 'rejected', 'suspended'])
 	.default('none')

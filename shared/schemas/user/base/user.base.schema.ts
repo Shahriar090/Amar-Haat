@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { GenderEnum, RoleEnum } from '../../common/enums/user.enums';
-import { PhoneSchema } from '../../common/phone.schema';
-import { UserNameSchema } from '../../common/user_name.schema';
+import { GenderEnum, RoleEnum } from '../../common/enums/user.enums.js';
+import { PhoneSchema } from '../../common/phone.schema.js';
+import { UserNameSchema } from '../../common/user_name.schema.js';
 
 export const BaseUserSchema = z.object({
 	name: UserNameSchema,
@@ -9,5 +9,5 @@ export const BaseUserSchema = z.object({
 	phone: PhoneSchema,
 	gender: GenderEnum,
 	avatar: z.url('Invalid image URL').optional().or(z.literal('')),
-	role: RoleEnum,
+	role: RoleEnum.optional(),
 });

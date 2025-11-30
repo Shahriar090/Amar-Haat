@@ -11,12 +11,12 @@ export interface IUser extends Document {
 	phone: PhoneType;
 	gender: GenderType;
 	avatar?: string;
-	role: RoleType;
-	hasSellerProfile: boolean;
-	sellerStatus: SellerStatusType;
-	isDeleted: boolean;
-	createdAt: Date;
-	updatedAt: Date;
+	role?: RoleType;
+	hasSellerProfile?: boolean;
+	sellerStatus?: SellerStatusType;
+	isDeleted?: boolean;
+	createdAt?: Date;
+	updatedAt?: Date;
 	// instance method
 	isPasswordMatched(plainTextPassword: string, hashedPassword: string): Promise<boolean>;
 }
