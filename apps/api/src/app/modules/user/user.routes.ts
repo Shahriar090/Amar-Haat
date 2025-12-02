@@ -5,5 +5,7 @@ import { UserControllers } from './user.controllers.js';
 const router: Router = express.Router();
 
 router.route('/create-user').post(validateRequest(CreateUserServerReqSchema), UserControllers.createUser);
+router.route('/:id').get(UserControllers.getUser);
+router.route('/').get(UserControllers.getAllUsers);
 
 export const UserRoutes = router;

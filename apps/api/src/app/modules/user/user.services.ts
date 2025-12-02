@@ -17,6 +17,30 @@ const createUserIntoDb = async (payload: IUser) => {
 	return user;
 };
 
+// get a single user
+const getUserFromDb = async (id: string) => {
+	const user = await UserDataSource.getUser(id);
+
+	if (!user) {
+		throw new AppError(httpStatus.NOT_FOUND, 'No User Found With This id', 'UserExists');
+	}
+
+	return user;
+};
+
+// get all users
+const getAllUsersFromDb = async () => {
+	const users = await UserDataSource.getAllUsers();
+
+	if (!users.length) {
+		throw new AppError(httpStatus.NOT_FOUND, 'Failed To Fetch Users.!', 'UsersNotFound');
+	}
+
+	return users;
+};
+
 export const UserServices = {
 	createUserIntoDb,
+	getUserFromDb,
+	getAllUsersFromDb,
 };
