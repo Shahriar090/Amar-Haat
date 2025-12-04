@@ -1,20 +1,26 @@
-import type { IUser } from './user.interface.js';
+import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
+import type { IUserDocument } from './user.interface.js';
 import { User } from './user.model.js';
 
 export const UserDataSource = {
 	// create user
-	createUser: async (payload: IUser): Promise<IUser> => {
+	createUser: async (payload: CreateUserServerType): Promise<IUserDocument> => {
 		const newUser = await User.create(payload);
-		return newUser.toObject();
+		return newUser;
 	},
 
 	// get a single user
-	getUser: async (id: string): Promise<IUser | null> => {
+	getUser: async (id: string): Promise<IUserDocument | null> => {
 		return await User.findById(id);
 	},
 
 	// get all users
-	getAllUsers: async (): Promise<IUser[]> => {
-		return await User.find().lean<IUser[]>();
+	getAllUsers: async (): Promise<IUserDocument[]> => {
+		return await User.find();
+	},
+
+	// update a user
+	updateUserInfo: async (id: string, payload: UpdateUserServerType): Promise<IUserDocument | null> => {
+		return await User.findByIdAndUpdate(id, payload, { new: true });
 	},
 };

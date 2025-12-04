@@ -1,10 +1,11 @@
+import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
 import httpStatus from 'http-status';
 import AppError from '../../errors/app_error.js';
 import { UserDataSource } from './user.data-source.js';
-import type { IUser } from './user.interface.js';
+import type { IUserDocument } from './user.interface.js';
 import { User } from './user.model.js';
 
-const createUserIntoDb = async (payload: IUser) => {
+const createUserIntoDb = async (payload: CreateUserServerType): Promise<IUserDocument> => {
 	// check if the requested user is already exist or not
 	const isUserExist = await User.isUserExists(payload.email);
 
@@ -12,7 +13,6 @@ const createUserIntoDb = async (payload: IUser) => {
 		throw new AppError(httpStatus.CONFLICT, 'User Already Exists With This Email.!', 'UserAlreadyExists');
 	}
 
-	// create new user
 	const user = await UserDataSource.createUser(payload);
 	return user;
 };
@@ -39,8 +39,33 @@ const getAllUsersFromDb = async () => {
 	return users;
 };
 
+// update a user
+const updateUserIntoDB = async (id: string, payload: UpdateUserServerType): Promise<IUserDocument | null> => {
+	const { name, ...remainingUserData } = payload;
+
+	if (Object.keys(remainingUserData).length === 0 && (!name || Object.keys(name).length === 0)) {
+		throw new AppError(httpStatus.BAD_REQUEST, 'Nothing to update', 'NoUpdateData');
+	}
+
+	const modifiedUpdatedData: Record<string, unknown> = { ...remainingUserData };
+
+	if (name && typeof name === 'object' && Object.keys(name).length) {
+		for (const [key, value] of Object.entries(name)) {
+			modifiedUpdatedData[`name.${key}`] = value;
+		}
+	}
+
+	const result = await UserDataSource.updateUserInfo(id, modifiedUpdatedData);
+
+	if (!result) {
+		throw new AppError(httpStatus.NOT_FOUND, 'User Not Found.!', 'UserNotFound');
+	}
+	return result;
+};
+
 export const UserServices = {
 	createUserIntoDb,
 	getUserFromDb,
 	getAllUsersFromDb,
+	updateUserIntoDB,
 };

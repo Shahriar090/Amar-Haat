@@ -29,7 +29,7 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 // get all users
-const getAllUsers = asyncHandler(async (req, res) => {
+const getAllUsers = asyncHandler(async (_req, res) => {
 	const result = await UserServices.getAllUsersFromDb();
 
 	sendResponse(res, {
@@ -40,8 +40,23 @@ const getAllUsers = asyncHandler(async (req, res) => {
 	});
 });
 
+// update a user
+const updateUser = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+	const { user } = req.body;
+	const result = await UserServices.updateUserIntoDB(id as string, user);
+
+	sendResponse(res, {
+		statusCode: httpStatus.CREATED,
+		success: true,
+		message: 'Users Data Updated Successfully',
+		data: result,
+	});
+});
+
 export const UserControllers = {
 	createUser,
 	getUser,
 	getAllUsers,
+	updateUser,
 };

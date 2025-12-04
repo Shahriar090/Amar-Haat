@@ -8,6 +8,6 @@ export const BaseUserSchema = z.object({
 	email: z.email('Please enter a valid email').toLowerCase().trim(),
 	phone: PhoneSchema,
 	gender: GenderEnum,
-	avatar: z.url('Invalid image URL').optional().or(z.literal('')),
+	avatar: z.url('Invalid image URL').or(z.literal('')).default('').optional(),
 	role: RoleEnum.optional(),
 });

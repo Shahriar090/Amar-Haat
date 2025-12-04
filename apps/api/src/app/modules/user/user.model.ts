@@ -2,7 +2,7 @@ import type { UserNameType } from '@shared/schemas/common/user_name.schema.js';
 import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 import config from '../../config/index.js';
-import type { IUser, UserModel } from './user.interface.js';
+import type { IUserDocument, UserStaticMethods } from './user.interface.js';
 
 const UserNameSchema = new Schema<UserNameType>(
 	{
@@ -24,18 +24,18 @@ const UserNameSchema = new Schema<UserNameType>(
 	{ _id: false },
 );
 
-export const UserSchema = new Schema<IUser, UserModel>(
+export const UserSchema = new Schema<IUserDocument, UserStaticMethods>(
 	{
 		name: UserNameSchema,
 		email: { type: String, required: true, unique: true, trim: true, lowercase: true },
 		password: { type: String, required: true, select: false },
 		phone: { type: String, required: true },
 		gender: { type: String, required: true },
-		avatar: { type: String, default: '' },
+		avatar: { type: String, required: false },
 		role: { type: String, required: false, default: 'customer' },
-		hasSellerProfile: { type: Boolean, default: false, required: false },
-		sellerStatus: { type: String, required: false },
-		isDeleted: { type: Boolean, default: false, required: false },
+		hasSellerProfile: { type: Boolean, default: false },
+		sellerStatus: { type: String, default: 'none' },
+		isDeleted: { type: Boolean, default: false },
 	},
 	{ timestamps: true },
 );
@@ -57,4 +57,4 @@ UserSchema.pre('save', async function (next) {
 	}
 });
 
-export const User = model<IUser, UserModel>('User', UserSchema);
+export const User = model<IUserDocument, UserStaticMethods>('User', UserSchema);

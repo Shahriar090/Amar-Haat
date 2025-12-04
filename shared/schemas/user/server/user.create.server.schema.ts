@@ -5,7 +5,7 @@ import { BaseUserSchema } from '../base/user.base.schema.js';
 
 export const CreateUserServerSchema = BaseUserSchema.extend({
 	password: PasswordSchema,
-	hasSellerProfile: z.boolean().default(false).optional(),
-	sellerStatus: SellerStatusEnum.default('none').optional(),
-	isDeleted: z.boolean().default(false).optional(),
+	hasSellerProfile: z.boolean().default(false),
+	sellerStatus: SellerStatusEnum.default('none'),
+	isDeleted: z.boolean().default(false),
 });
