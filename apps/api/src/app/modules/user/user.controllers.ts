@@ -21,7 +21,7 @@ const getUser = asyncHandler(async (req, res) => {
 	const result = await UserServices.getUserFromDb(id as string);
 
 	sendResponse(res, {
-		statusCode: httpStatus.CREATED,
+		statusCode: httpStatus.OK,
 		success: true,
 		message: 'User Data Retrieved Successfully',
 		data: result,
@@ -33,7 +33,7 @@ const getAllUsers = asyncHandler(async (_req, res) => {
 	const result = await UserServices.getAllUsersFromDb();
 
 	sendResponse(res, {
-		statusCode: httpStatus.CREATED,
+		statusCode: httpStatus.OK,
 		success: true,
 		message: 'Users Data Retrieved Successfully',
 		data: result,
@@ -47,9 +47,22 @@ const updateUser = asyncHandler(async (req, res) => {
 	const result = await UserServices.updateUserIntoDB(id as string, user);
 
 	sendResponse(res, {
-		statusCode: httpStatus.CREATED,
+		statusCode: httpStatus.OK,
 		success: true,
 		message: 'Users Data Updated Successfully',
+		data: result,
+	});
+});
+
+// delete a user
+const deleteUser = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+	const result = await UserServices.deleteUserFromDb(id as string);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: 'Users Deleted Successfully',
 		data: result,
 	});
 });
@@ -59,4 +72,5 @@ export const UserControllers = {
 	getUser,
 	getAllUsers,
 	updateUser,
+	deleteUser,
 };

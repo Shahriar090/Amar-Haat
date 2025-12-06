@@ -63,9 +63,20 @@ const updateUserIntoDB = async (id: string, payload: UpdateUserServerType): Prom
 	return result;
 };
 
+// delete a user
+const deleteUserFromDb = async (id: string) => {
+	const isUserExists = await User.findById(id);
+	if (!isUserExists) {
+		throw new AppError(httpStatus.NOT_FOUND, 'User Not Found With This Id.!', 'UserNotFound');
+	}
+	const result = await UserDataSource.deleteUser(id);
+	return result;
+};
+
 export const UserServices = {
 	createUserIntoDb,
 	getUserFromDb,
 	getAllUsersFromDb,
 	updateUserIntoDB,
+	deleteUserFromDb,
 };

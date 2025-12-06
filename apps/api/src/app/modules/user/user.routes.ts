@@ -9,5 +9,6 @@ router.route('/create-user').post(validateRequest(CreateUserServerReqSchema), Us
 router.route('/:id').get(UserControllers.getUser);
 router.route('/').get(UserControllers.getAllUsers);
 router.route('/update/:id').put(validateRequest(UpdateUserServerReqSchema), UserControllers.updateUser);
+router.route('/delete/:id').delete(UserControllers.deleteUser);
 
 export const UserRoutes = router;

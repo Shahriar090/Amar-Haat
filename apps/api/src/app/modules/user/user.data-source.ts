@@ -23,4 +23,9 @@ export const UserDataSource = {
 	updateUserInfo: async (id: string, payload: UpdateUserServerType): Promise<IUserDocument | null> => {
 		return await User.findByIdAndUpdate(id, payload, { new: true });
 	},
+
+	// delete a user
+	deleteUser: async (id: string): Promise<IUserDocument | null> => {
+		return await User.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
+	},
 };
