@@ -8,4 +8,8 @@ export const envValidationSchema = z.object({
 	PORT: numEnv(),
 	MONGODB_URI: z.string(),
 	BCRYPT_SALT_ROUND: numEnv(),
+	ACCESS_TOKEN_SECRET: z.string(),
+	ACCESS_TOKEN_EXPIRY: z.string(),
+	REFRESH_TOKEN_SECRET: z.string(),
+	REFRESH_TOKEN_EXPIRY: z.string(),
 });

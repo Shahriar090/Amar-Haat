@@ -57,4 +57,9 @@ UserSchema.pre('save', async function (next) {
 	}
 });
 
+// static method to check if the plain-text password matches the hashed password.
+UserSchema.methods.isPasswordMatched = async function (plainTextPassword: string) {
+	return await bcrypt.compare(plainTextPassword, this.password);
+};
+
 export const User = model<IUserDocument, UserStaticMethods>('User', UserSchema);
