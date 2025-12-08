@@ -1,3 +1,4 @@
+import type { Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 import config from '../../config/index.js';
@@ -33,11 +34,15 @@ export const generateRefreshToken = (user: IUserDocument): { token: string; jti:
 	};
 };
 
-export const setCookie = (res, token) => {
+export const setCookie = (res: Response, token: string) => {
 	res.cookie('refreshToken', token, {
 		httpOnly: true,
 		secure: process.env.NODE_ENV === 'production',
 		sameSite: 'none',
 		maxAge: REFRESH_TOKEN_MAX_AGE_MS,
 	});
+};
+
+export const verifyJwt = (token: string, secret: string) => {
+	return jwt.verify(token, secret);
 };

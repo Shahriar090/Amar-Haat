@@ -30,6 +30,25 @@ const loginUser = asyncHandler(async (req, res) => {
 	});
 });
 
+// refresh token
+const refreshToken = asyncHandler(async (req, res) => {
+	const { refreshToken } = req.cookies;
+	// const payload = {
+	// 	ip: req.ip,
+	// 	userAgent: req.headers['user-agent'],
+	// };
+	const { newAccessToken, newRefreshToken } = await AuthServices.refreshToken(refreshToken, req);
+	setCookie(res, newRefreshToken);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: 'Token Refreshed Successfully',
+		data: { newAccessToken: newAccessToken },
+	});
+});
+
 export const AuthControllers = {
 	loginUser,
+	refreshToken,
 };
