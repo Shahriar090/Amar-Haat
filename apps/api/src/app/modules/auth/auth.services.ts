@@ -4,9 +4,8 @@ import httpStatus from 'http-status';
 import AppError from '../../errors/app_error.js';
 import { SessionServices } from '../sessions/sessions.services.js';
 import { User } from '../user/user.model.js';
-import { generateAccessToken, generateRefreshToken } from './auth.utils.js';
+import { generateAccessToken, generateRefreshToken, REFRESH_TOKEN_MAX_AGE_MS } from './auth.utils.js';
 
-const REFRESH_TOKEN_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 const loginUser = async (payload: AuthType) => {
 	// check if the user is exist first
 	const user = await User.isUserExists(payload.body.email);
@@ -29,6 +28,7 @@ const loginUser = async (payload: AuthType) => {
 
 	// generate tokens
 	const accessToken = generateAccessToken(user);
+	// jti = Json Web Token Id
 	const { token: refreshToken, jti } = generateRefreshToken(user);
 
 	const expiresAt = new Date(Date.now() + REFRESH_TOKEN_MAX_AGE_MS);

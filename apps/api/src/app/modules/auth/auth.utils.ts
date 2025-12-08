@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import config from '../../config/index.js';
 import type { IUserDocument } from '../user/user.interface.js';
 
+export const REFRESH_TOKEN_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+
 export const generateAccessToken = (user: IUserDocument): string => {
 	return jwt.sign(
 		{
@@ -31,7 +33,6 @@ export const generateRefreshToken = (user: IUserDocument): { token: string; jti:
 	};
 };
 
-const REFRESH_TOKEN_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 export const setCookie = (res, token) => {
 	res.cookie('refreshToken', token, {
 		httpOnly: true,
