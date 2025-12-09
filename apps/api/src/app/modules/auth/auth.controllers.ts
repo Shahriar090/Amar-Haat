@@ -1,20 +1,11 @@
-import type { AuthType } from '@shared/schemas/auth/auth.types.js';
 import httpStatus from 'http-status';
 import asyncHandler from '../../utils/async_handler.js';
 import sendResponse from '../../utils/send_response.js';
 import { AuthServices } from './auth.services.js';
-import { setCookie } from './auth.utils.js';
+import { clearCookie, setCookie } from './auth.utils.js';
 
 const loginUser = asyncHandler(async (req, res) => {
-	const payload: AuthType = {
-		body: {
-			email: req.body.email,
-			password: req.body.password,
-			ip: req.ip,
-			userAgent: req.headers['user-agent'],
-		},
-	};
-	const result = await AuthServices.loginUser(payload);
+	const result = await AuthServices.loginUser(req);
 	const { accessToken, refreshToken, user } = result;
 
 	setCookie(res, refreshToken);
@@ -33,10 +24,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // refresh token
 const refreshToken = asyncHandler(async (req, res) => {
 	const { refreshToken } = req.cookies;
-	// const payload = {
-	// 	ip: req.ip,
-	// 	userAgent: req.headers['user-agent'],
-	// };
+
 	const { newAccessToken, newRefreshToken } = await AuthServices.refreshToken(refreshToken, req);
 	setCookie(res, newRefreshToken);
 
@@ -48,7 +36,23 @@ const refreshToken = asyncHandler(async (req, res) => {
 	});
 });
 
+// logout
+const logoutUser = asyncHandler(async (req, res) => {
+	const { refreshToken } = req.cookies;
+	await AuthServices.logoutUser(refreshToken);
+
+	clearCookie(res);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: 'Logout Successful',
+		data: {},
+	});
+});
+
 export const AuthControllers = {
 	loginUser,
 	refreshToken,
+	logoutUser,
 };

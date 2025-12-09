@@ -1,4 +1,3 @@
-import type { AuthType } from '@shared/schemas/auth/auth.types.js';
 import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
 import type { Request } from 'express';
 import httpStatus from 'http-status';
@@ -10,9 +9,10 @@ import { SessionServices } from '../sessions/sessions.services.js';
 import { User } from '../user/user.model.js';
 import { generateAccessToken, generateRefreshToken, REFRESH_TOKEN_MAX_AGE_MS, verifyJwt } from './auth.utils.js';
 
-const loginUser = async (payload: AuthType) => {
+const loginUser = async (req: Request) => {
+	const { email, password, ip, userAgent } = req.body;
 	// check if the user is exist first
-	const user = await User.isUserExists(payload.body.email);
+	const user = await User.isUserExists(email);
 
 	if (!user) {
 		throw new AppError(httpStatus.NOT_FOUND, 'User Not Found', 'UserNotFound');
@@ -26,7 +26,7 @@ const loginUser = async (payload: AuthType) => {
 	}
 
 	// check if the hashed password matches with plain text password
-	if (!(await user.isPasswordMatched(payload.body.password))) {
+	if (!(await user.isPasswordMatched(password))) {
 		throw new AppError(httpStatus.BAD_REQUEST, 'Incorrect Password! Please Try Again', 'IncorrectPassword');
 	}
 
@@ -40,8 +40,8 @@ const loginUser = async (payload: AuthType) => {
 	const sessionPayload: RefreshSessionType = {
 		userId: user._id as Types.ObjectId,
 		jti,
-		ip: payload.body.ip,
-		userAgent: payload.body.userAgent,
+		ip,
+		userAgent,
 		expiresAt,
 	};
 
@@ -106,7 +106,21 @@ const refreshToken = async (token: string, req: Request) => {
 	};
 };
 
+// logout
+const logoutUser = async (token: string) => {
+	if (!token) {
+		throw new AppError(httpStatus.UNAUTHORIZED, 'You Are Not Authorized.!', 'UnauthorizedError');
+	}
+
+	const decoded = verifyJwt(token, config.refresh_token_secret) as JwtPayload;
+
+	const { jti } = decoded;
+
+	await SessionServices.revokeSession(jti as string);
+};
+
 export const AuthServices = {
 	loginUser,
 	refreshToken,
+	logoutUser,
 };

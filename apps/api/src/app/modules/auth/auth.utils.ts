@@ -37,9 +37,17 @@ export const generateRefreshToken = (user: IUserDocument): { token: string; jti:
 export const setCookie = (res: Response, token: string) => {
 	res.cookie('refreshToken', token, {
 		httpOnly: true,
-		secure: process.env.NODE_ENV === 'production',
+		secure: config.node_env === 'production',
 		sameSite: 'none',
 		maxAge: REFRESH_TOKEN_MAX_AGE_MS,
+	});
+};
+
+export const clearCookie = (res: Response, cookieName = 'refreshToken') => {
+	res.clearCookie(cookieName, {
+		httpOnly: true,
+		secure: config.node_env === 'production',
+		sameSite: 'none',
 	});
 };
 
