@@ -69,27 +69,28 @@ REACT_APP_API_URL=http://localhost:5000/api
 ## Installation (Local Development)
 
 **Clone the repo**
-
+```
 git clone https://github.com/Shahriar090/Amar-Haat.git
-
+```
 **Navigate to the right directory api/web**
-
+```
 cd aamar-haat/api
-
+```
 **Install dependencies**
-
+```
 pnpm install
-
+```
 **Start development mode**
-
+```
 pnpm run start:dev
-
+```
 **OR start in production mode (after building)**
-
+```
 npm run build
-
+```
+```
 npm start
-
+```
 **Note:** ***Make sure to create a .env file based on .env.example before running the server.***
 
 ## Folder Structure
