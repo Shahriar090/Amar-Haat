@@ -1,14 +1,19 @@
+import config from '@api/src/app/config/index.js';
+import AppError from '@api/src/app/errors/app_error.js';
+import {
+	generateAccessToken,
+	generateRefreshToken,
+	REFRESH_TOKEN_MAX_AGE_MS,
+	verifyJwt,
+} from '@api/src/app/modules/auth/auth.utils.js';
+import { SessionServices } from '@api/src/app/modules/sessions/sessions.services.js';
+import { User } from '@api/src/app/modules/user/user.model.js';
 import type { AuthType } from '@shared/schemas/auth/auth.types.js';
 import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
 import type { Request } from 'express';
 import httpStatus from 'http-status';
 import type { JwtPayload } from 'jsonwebtoken';
 import type { Types } from 'mongoose';
-import config from '../../config/index.js';
-import AppError from '../../errors/app_error.js';
-import { SessionServices } from '../sessions/sessions.services.js';
-import { User } from '../user/user.model.js';
-import { generateAccessToken, generateRefreshToken, REFRESH_TOKEN_MAX_AGE_MS, verifyJwt } from './auth.utils.js';
 
 const loginUser = async (payload: AuthType) => {
 	// check if the user is exist first

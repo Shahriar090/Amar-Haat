@@ -1,8 +1,8 @@
+import config from '@api/src/app/config/index.js';
+import type { IUserDocument } from '@api/src/app/modules/user/user.interface.js';
 import type { Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import config from '../../config/index.js';
-import type { IUserDocument } from '../user/user.interface.js';
 
 export const REFRESH_TOKEN_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 

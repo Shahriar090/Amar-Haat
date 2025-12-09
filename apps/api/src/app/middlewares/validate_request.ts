@@ -1,4 +1,4 @@
-import asyncHandler from '../utils/async_handler.js';
+import asyncHandler from '@api/src/app/utils/async_handler.js';
 
 // biome-ignore lint/suspicious/noExplicitAny: <Using any for a temporary fix. Will use appropriate type later>
 const validateRequest = (schema: any) => {

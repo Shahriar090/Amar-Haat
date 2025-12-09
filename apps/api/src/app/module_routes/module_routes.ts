@@ -1,6 +1,6 @@
+import { AuthRoutes } from '@api/src/app/modules/auth/auth.routes.js';
+import { UserRoutes } from '@api/src/app/modules/user/user.routes.js';
 import express, { type Router } from 'express';
-import { AuthRoutes } from '../modules/auth/auth.routes.js';
-import { UserRoutes } from '../modules/user/user.routes.js';
 const router: Router = express.Router();
 
 type ModuleRoute = {

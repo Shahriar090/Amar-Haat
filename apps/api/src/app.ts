@@ -1,9 +1,10 @@
+import globalErrorHandler from '@api/src/app/middlewares/global_error_handler.js';
+import notFound from '@api/src/app/middlewares/not_found.js';
+import router from '@api/src/app/module_routes/module_routes.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { type Application, type Request, type Response } from 'express';
-import globalErrorHandler from './app/middlewares/global_error_handler.js';
-import notFound from './app/middlewares/not_found.js';
-import router from './app/module_routes/module_routes.js';
+// import notFound from './app/middlewares/not_found.js';
 // import router from './app/module_routes/module_routes.js';
 const app: Application = express();
 
