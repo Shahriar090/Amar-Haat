@@ -1,3 +1,4 @@
+import type { AuthPayloadType } from '@shared/schemas/auth/auth.types.js';
 import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
 import type { Request } from 'express';
 import httpStatus from 'http-status';
@@ -9,8 +10,8 @@ import { SessionServices } from '../sessions/sessions.services.js';
 import { User } from '../user/user.model.js';
 import { generateAccessToken, generateRefreshToken, REFRESH_TOKEN_MAX_AGE_MS, verifyJwt } from './auth.utils.js';
 
-const loginUser = async (req: Request) => {
-	const { email, password, ip, userAgent } = req.body;
+const loginUser = async (payload: AuthPayloadType) => {
+	const { email, password, ip, userAgent } = payload;
 	// check if the user is exist first
 	const user = await User.isUserExists(email);
 

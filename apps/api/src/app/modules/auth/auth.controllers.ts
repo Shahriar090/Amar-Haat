@@ -1,3 +1,4 @@
+import type { AuthPayloadType } from '@shared/schemas/auth/auth.types.js';
 import httpStatus from 'http-status';
 import asyncHandler from '../../utils/async_handler.js';
 import sendResponse from '../../utils/send_response.js';
@@ -5,7 +6,18 @@ import { AuthServices } from './auth.services.js';
 import { clearCookie, setCookie } from './auth.utils.js';
 
 const loginUser = asyncHandler(async (req, res) => {
-	const result = await AuthServices.loginUser(req);
+	const { email, password } = req.body;
+	const ip = req.ip;
+	const userAgent = req.headers['user-agent'];
+
+	const payload: AuthPayloadType = {
+		email,
+		password,
+		ip,
+		userAgent,
+	};
+
+	const result = await AuthServices.loginUser(payload);
 	const { accessToken, refreshToken, user } = result;
 
 	setCookie(res, refreshToken);
