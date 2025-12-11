@@ -4,7 +4,6 @@ import type { Request } from 'express';
 import httpStatus from 'http-status';
 import type { JwtPayload } from 'jsonwebtoken';
 import type { Types } from 'mongoose';
-import mongoose from 'mongoose';
 import config from '../../config/index.js';
 import AppError from '../../errors/app_error.js';
 import { SessionServices } from '../sessions/sessions.services.js';
@@ -32,22 +31,12 @@ const loginUser = async (payload: AuthPayloadType) => {
 		throw new AppError(httpStatus.BAD_REQUEST, 'Incorrect Password! Please Try Again', 'IncorrectPassword');
 	}
 
-	let refreshToken: string;
-	let jti: string;
-
-	// Using Transaction to ensure proper syncking for Session and Refresh Token
-	const mongooseSession = await mongoose.startSession();
-	mongooseSession.startTransaction();
-
 	try {
 		const expiresAt = new Date(Date.now() + REFRESH_TOKEN_MAX_AGE_MS);
 
 		// generate refresh token
 		// jti = Json Web Token Id
-		const refreshTokenResult = generateRefreshToken(user);
-
-		refreshToken = refreshTokenResult.token;
-		jti = refreshTokenResult.jti;
+		const { token: refreshToken, jti } = generateRefreshToken(user);
 
 		// create session
 		const sessionPayload: RefreshSessionType = {
@@ -58,24 +47,20 @@ const loginUser = async (payload: AuthPayloadType) => {
 			expiresAt,
 		};
 
-		await SessionServices.createSession(sessionPayload, { mongooseSession });
-		await mongooseSession.commitTransaction();
+		await SessionServices.createSession(sessionPayload);
+
+		// generate access token
+		const accessToken = generateAccessToken(user);
+
+		return {
+			accessToken,
+			refreshToken,
+			user,
+		};
 	} catch (err) {
-		await mongooseSession.abortTransaction();
 		console.error(err);
 		throw new AppError(httpStatus.INTERNAL_SERVER_ERROR, 'Failed To Create Session', 'SessionCreationFailed');
-	} finally {
-		mongooseSession.endSession();
 	}
-
-	// generate access token
-	const accessToken = generateAccessToken(user);
-
-	return {
-		accessToken,
-		refreshToken,
-		user,
-	};
 };
 
 // refresh token

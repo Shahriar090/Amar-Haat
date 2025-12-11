@@ -1,38 +1,18 @@
 import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
-import httpStatus from 'http-status';
-import type { ClientSession } from 'mongoose';
-import AppError from '../../errors/app_error.js';
 import { RefreshSession } from './session.model.js';
 import type { SessionRefreshDocument } from './sessions.interface.js';
 
 // create session
-const createSession = async (
-	payload: RefreshSessionType,
-	options?: { mongooseSession: ClientSession },
-): Promise<SessionRefreshDocument> => {
-	console.log(payload, 'from session service');
-	const docs = await RefreshSession.create(
-		[
-			{
-				userId: payload.userId,
-				jti: payload.jti,
-				ip: payload.ip,
-				userAgent: payload.userAgent,
-				expiresAt: payload.expiresAt,
-			},
-		],
-		{ session: options?.mongooseSession },
-	);
+const createSession = async (payload: RefreshSessionType): Promise<SessionRefreshDocument> => {
+	const newSession = RefreshSession.create({
+		userId: payload.userId,
+		jti: payload.jti,
+		ip: payload.ip,
+		userAgent: payload.userAgent,
+		expiresAt: payload.expiresAt,
+	});
 
-	const session = docs[0];
-
-	console.log(docs, 'all sessions');
-
-	if (!session) {
-		throw new AppError(httpStatus.INTERNAL_SERVER_ERROR, 'Failed To Create Session', 'SessionCreationFailed');
-	}
-
-	return session;
+	return newSession;
 };
 
 // get session by jti (json web token id)
