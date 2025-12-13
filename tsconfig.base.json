@@ -5,11 +5,6 @@
 		"moduleResolution": "nodenext",
 		"strict": true,
 		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"baseUrl": ".",
-		"paths": {
-			"@shared/*": ["shared/*"],
-			"@api/src/*": ["apps/api/src/*"]
-		}
+		"forceConsistentCasingInFileNames": true
 	}
 }

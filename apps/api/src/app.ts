@@ -1,6 +1,7 @@
-import globalErrorHandler from '@api/src/app/middlewares/global_error_handler.js';
-import notFound from '@api/src/app/middlewares/not_found.js';
-import router from '@api/src/app/module_routes/module_routes.js';
+import globalErrorHandler from '@/app/middlewares/global_error_handler';
+import notFound from '@/app/middlewares/not_found';
+import router from '@/app/module_routes/module_routes';
+
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { type Application, type Request, type Response } from 'express';
