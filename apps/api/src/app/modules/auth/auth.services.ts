@@ -26,6 +26,14 @@ const loginUser = async (payload: AuthPayloadType) => {
 		throw new AppError(httpStatus.NOT_FOUND, 'This User Is Already Deleted ', 'UserNotFound');
 	}
 
+	// check user status (active or blocked)
+
+	const isUserActive = user.isActive;
+
+	if (!isUserActive) {
+		throw new AppError(httpStatus.FORBIDDEN, 'User Account Blocked', 'UserAccountBlocked');
+	}
+
 	// check if the hashed password matches with plain text password
 	if (!(await user.isPasswordMatched(password))) {
 		throw new AppError(httpStatus.BAD_REQUEST, 'Incorrect Password! Please Try Again', 'IncorrectPassword');

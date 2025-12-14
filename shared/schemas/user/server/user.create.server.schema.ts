@@ -8,4 +8,5 @@ export const CreateUserServerSchema = BaseUserSchema.extend({
 	hasSellerProfile: z.boolean().default(false),
 	sellerStatus: SellerStatusEnum.default('none'),
 	isDeleted: z.boolean().default(false),
+	isActive: z.boolean().default(true),
 });

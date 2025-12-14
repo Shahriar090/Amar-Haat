@@ -36,6 +36,7 @@ export const UserSchema = new Schema<IUserDocument, UserStaticMethods>(
 		hasSellerProfile: { type: Boolean, default: false },
 		sellerStatus: { type: String, default: 'none' },
 		isDeleted: { type: Boolean, default: false },
+		isActive: { type: Boolean, default: true },
 	},
 	{ timestamps: true },
 );
