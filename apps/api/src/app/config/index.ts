@@ -1,4 +1,4 @@
-import { env } from './validate_env.js';
+import { env } from '@/app/config/validate_env.js';
 
 export default {
 	port: env.PORT,
