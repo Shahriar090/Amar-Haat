@@ -67,10 +67,28 @@ const deleteUser = asyncHandler(async (req, res) => {
 	});
 });
 
+// address related logic starts
+
+// add address
+
+const addAddress = asyncHandler(async (req, res) => {
+	const { address } = req.body;
+	const { id } = req.params;
+	const result = await UserServices.addAddress(id as string, address);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: 'Address Added Successfully',
+		data: result,
+	});
+});
+
 export const UserControllers = {
 	createUser,
 	getUser,
 	getAllUsers,
 	updateUser,
 	deleteUser,
+	addAddress,
 };

@@ -1,3 +1,4 @@
+import type { AddressType } from '@shared/schemas/common/address.schema.js';
 import type { UserNameType } from '@shared/schemas/common/user_name.schema.js';
 import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
@@ -24,6 +25,52 @@ const UserNameSchema = new Schema<UserNameType>(
 	{ _id: false },
 );
 
+const AddressSchema = new Schema<AddressType>({
+	type: {
+		type: String,
+		default: 'home',
+	},
+	fullName: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+
+	phone: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+
+	street: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+
+	city: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+
+	state: {
+		type: String,
+		trim: true,
+	},
+
+	zipCode: {
+		type: String,
+		trim: true,
+	},
+
+	country: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+});
+
 export const UserSchema = new Schema<IUserDocument, UserStaticMethods>(
 	{
 		name: UserNameSchema,
@@ -37,6 +84,10 @@ export const UserSchema = new Schema<IUserDocument, UserStaticMethods>(
 		sellerStatus: { type: String, default: 'none' },
 		isDeleted: { type: Boolean, default: false },
 		isActive: { type: Boolean, default: true },
+		address: {
+			type: [AddressSchema],
+			default: [],
+		},
 	},
 	{ timestamps: true },
 );

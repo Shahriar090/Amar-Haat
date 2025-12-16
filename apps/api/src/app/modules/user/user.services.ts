@@ -1,3 +1,4 @@
+import type { AddressType } from '@shared/schemas/common/address.schema.js';
 import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
 import httpStatus from 'http-status';
 import AppError from '../../errors/app_error.js';
@@ -73,10 +74,28 @@ const deleteUserFromDb = async (id: string) => {
 	return result;
 };
 
+// address related logic starts
+
+// add address
+const addAddress = async (id: string, address: AddressType[]) => {
+	if (!address || address.length === 0) {
+		throw new AppError(httpStatus.BAD_REQUEST, 'Address is required', 'AddressIsRequired');
+	}
+
+	const result = await UserDataSource.addAddress(id, address);
+
+	if (!result) {
+		throw new AppError(httpStatus.NOT_FOUND, 'User Not Found', 'UserNotFound');
+	}
+
+	return result;
+};
+
 export const UserServices = {
 	createUserIntoDb,
 	getUserFromDb,
 	getAllUsersFromDb,
 	updateUserIntoDB,
 	deleteUserFromDb,
+	addAddress,
 };

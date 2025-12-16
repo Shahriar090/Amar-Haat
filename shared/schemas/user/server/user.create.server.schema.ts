@@ -1,3 +1,4 @@
+import { AddressSchema } from '@shared/schemas/common/address.schema.js';
 import { z } from 'zod';
 import { SellerStatusEnum } from '../../common/enums/user.enums.js';
 import { PasswordSchema } from '../../common/password.schema.js';
@@ -9,4 +10,5 @@ export const CreateUserServerSchema = BaseUserSchema.extend({
 	sellerStatus: SellerStatusEnum.default('none'),
 	isDeleted: z.boolean().default(false),
 	isActive: z.boolean().default(true),
+	address: AddressSchema.optional(),
 });
