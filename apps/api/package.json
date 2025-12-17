@@ -7,7 +7,10 @@
 	"scripts": {
 		"build": "tsc",
 		"start:dev": "NODE_ENV=development tsx watch src/server.ts",
-		"start:prod": "NODE_ENV=production node dist/server.js"
+		"start:prod": "NODE_ENV=production node dist/server.js",
+		"format": "biome format --fix .",
+		"lint": "biome check .",
+		"lint:fix": "biome check --fix ."
 	},
 	"keywords": [],
 	"author": "",

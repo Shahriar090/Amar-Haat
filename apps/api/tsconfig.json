@@ -1,54 +1,53 @@
 {
-	// extending the root tsconfig.json file
-	// "extends": "../../tsconfig.base.json",
-	// Visit https://aka.ms/tsconfig to read more about this file
-	"compilerOptions": {
-		// File Layout
-		"composite": true,
-		"rootDir": ".",
-		"outDir": "../../dist/apps/api",
+  // extending the root tsconfig.json file
+  // "extends": "../../tsconfig.base.json",
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    "composite": true,
+    "rootDir": ".",
+    "outDir": "../../dist/apps/api",
 
-		// Environment Settings
-		// See also https://aka.ms/tsconfig/module
-		"module": "nodenext",
-		"target": "es2022",
-		"moduleResolution": "nodenext",
-		"esModuleInterop": true,
-		"types": [],
-		"lib": ["ES2015", "ES6", "ES2022"],
-		// For nodejs:
-		// "lib": ["esnext"],
-		// "types": ["node"],
-		// and npm install -D @types/node
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "esnext",
+    "target": "es2022",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "types": [],
+    "lib": ["ES2015", "ES6", "ES2022", "DOM"],
+    // For nodejs:
+    // "types": ["node"],
+    // and npm install -D @types/node
 
-		// Other Outputs
-		"sourceMap": true,
+    // Other Outputs
+    "sourceMap": true,
 
-		// Stricter Typechecking Options
-		"noUncheckedIndexedAccess": true,
-		"exactOptionalPropertyTypes": true,
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
 
-		// Style Options
-		// "noImplicitReturns": true,
-		// "noImplicitOverride": true,
-		// "noUnusedLocals": true,
-		// "noUnusedParameters": true,
-		// "noFallthroughCasesInSwitch": true,
-		// "noPropertyAccessFromIndexSignature": true,
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
 
-		// Recommended Options
-		"strict": true,
-		"jsx": "react-jsx",
-		"isolatedModules": true,
-		"verbatimModuleSyntax": true,
-		"noUncheckedSideEffectImports": true,
-		"moduleDetection": "force",
-		"skipLibCheck": true,
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"]
-		}
-	},
-	"include": ["src/**/*", "../../shared/*"],
-	"exclude": ["node_modules", "dist", "build"]
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*", "../../shared/*"],
+  "exclude": ["node_modules", "dist", "build"]
 }
