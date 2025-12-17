@@ -1,7 +1,7 @@
-import validateRequest from '@api/src/app/middlewares/validate_request.js';
-import { AuthControllers } from '@api/src/app/modules/auth/auth.controllers.js';
-import { AuthSchema } from '@shared/schemas/auth/auth.schema.js';
+import validateRequest from '@/app/middlewares/validate_request';
+import { AuthControllers } from '@/app/modules/auth/auth.controllers';
 import express, { type Router } from 'express';
+import { AuthSchema } from '../../../../../../shared/schemas/auth/auth.schema';
 const router: Router = express.Router();
 
 router.route('/login').post(validateRequest(AuthSchema), AuthControllers.loginUser);

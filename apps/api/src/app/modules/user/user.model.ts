@@ -1,6 +1,6 @@
-import type { UserNameType } from '@shared/schemas/common/user_name.schema.js';
 import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
+import type { UserNameType } from '../../../../../../shared/schemas/common/user_name.schema.js';
 import config from '../../config/index.js';
 import type { IUserDocument, UserStaticMethods } from './user.interface.js';
 

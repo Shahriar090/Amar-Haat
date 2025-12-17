@@ -1,6 +1,6 @@
+import asyncHandler from '@/app/utils/async_handler.js';
+import sendResponse from '@/app/utils/send_response.js';
 import httpStatus from 'http-status';
-import asyncHandler from '../../utils/async_handler.js';
-import sendResponse from '../../utils/send_response.js';
 import { UserServices } from './user.services.js';
 
 // create a new user

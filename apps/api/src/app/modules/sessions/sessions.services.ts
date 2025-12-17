@@ -1,6 +1,6 @@
-import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
-import { RefreshSession } from './session.model.js';
-import type { SessionRefreshDocument } from './sessions.interface.js';
+import { RefreshSession } from '@/app/modules/sessions/session.model.js';
+import type { SessionRefreshDocument } from '@/app/modules/sessions/sessions.interface.js';
+import type { RefreshSessionType } from '../../../../../../shared/schemas/sessions/refresh.session.types.js';
 
 // create session
 const createSession = async (payload: RefreshSessionType): Promise<SessionRefreshDocument> => {
