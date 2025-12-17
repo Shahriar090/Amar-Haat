@@ -1,5 +1,5 @@
+import type { SessionRefreshDocument } from '@/app/modules/sessions/sessions.interface';
 import { model, Schema } from 'mongoose';
-import type { SessionRefreshDocument } from './sessions.interface.js';
 
 export const RefreshSessionSchema = new Schema<SessionRefreshDocument>({
 	userId: {

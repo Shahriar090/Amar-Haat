@@ -1,5 +1,5 @@
-import app from '@api/src/app.js';
-import config from '@api/src/app/config/index.js';
+import app from '@/app';
+import config from '@/app/config';
 import mongoose from 'mongoose';
 import type { Server } from 'node:http';
 const PORT = config.port || 3000;

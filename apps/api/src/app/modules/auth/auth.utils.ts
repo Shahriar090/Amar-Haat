@@ -1,5 +1,5 @@
-import config from '@api/src/app/config/index.js';
-import type { IUserDocument } from '@api/src/app/modules/user/user.interface.js';
+import config from '@/app/config';
+import type { IUserDocument } from '@/app/modules/user/user.interface';
 import type { Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
