@@ -1,7 +1,6 @@
 import { z } from 'zod';
-import { SellerStatusEnum } from '../../common/enums/user.enums.js';
-import { PasswordSchema } from '../../common/password.schema.js';
-import { BaseUserSchema } from '../base/user.base.schema.js';
+import { PasswordSchema, SellerStatusEnum } from '../../common';
+import { BaseUserSchema } from '../base/user.base.schema';
 
 export const CreateUserServerSchema = BaseUserSchema.extend({
 	password: PasswordSchema,

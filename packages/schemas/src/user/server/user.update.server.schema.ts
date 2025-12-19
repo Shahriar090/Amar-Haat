@@ -1,4 +1,4 @@
-import { CreateUserServerSchema } from './user.create.server.schema.js';
+import { CreateUserServerSchema } from './user.create.server.schema';
 
 export const UpdateUserServerSchema = CreateUserServerSchema.extend({
 	name: CreateUserServerSchema.shape.name.partial(),

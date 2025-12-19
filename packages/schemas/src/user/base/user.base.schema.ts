@@ -1,8 +1,6 @@
+// import { EmailSchema, GenderEnum, PhoneSchema, RoleEnum, UserNameSchema } from 'packages/schemas/src/common';
 import { z } from 'zod';
-import { EmailSchema } from '../../common/email.schema.js';
-import { GenderEnum, RoleEnum } from '../../common/enums/user.enums.js';
-import { PhoneSchema } from '../../common/phone.schema.js';
-import { UserNameSchema } from '../../common/user_name.schema.js';
+import { EmailSchema, GenderEnum, PhoneSchema, RoleEnum, UserNameSchema } from '../../common/';
 
 export const BaseUserSchema = z.object({
 	name: UserNameSchema,
