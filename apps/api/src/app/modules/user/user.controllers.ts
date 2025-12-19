@@ -1,5 +1,5 @@
-import asyncHandler from '@/app/utils/async_handler.js';
-import sendResponse from '@/app/utils/send_response.js';
+import asyncHandler from '@/app/utils/async_handler';
+import sendResponse from '@/app/utils/send_response';
 import httpStatus from 'http-status';
 import { UserServices } from './user.services.js';
 

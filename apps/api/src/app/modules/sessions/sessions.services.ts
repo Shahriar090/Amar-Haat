@@ -1,5 +1,5 @@
-import { RefreshSession } from '@/app/modules/sessions/session.model.js';
-import type { SessionRefreshDocument } from '@/app/modules/sessions/sessions.interface.js';
+import { RefreshSession } from '@/app/modules/sessions/session.model';
+import type { SessionRefreshDocument } from '@/app/modules/sessions/sessions.interface';
 import type { RefreshSessionType } from '@amar-haat/schemas';
 
 // create session

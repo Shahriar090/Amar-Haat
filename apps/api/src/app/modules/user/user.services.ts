@@ -1,10 +1,10 @@
 import httpStatus from 'http-status';
 
+import AppError from '@/app/errors/app_error';
+import { UserDataSource } from '@/app/modules/user/user.data_source';
+import type { IUserDocument } from '@/app/modules/user/user.interface';
+import { User } from '@/app/modules/user/user.model';
 import type { CreateUserServerType, UpdateUserServerType } from '@amar-haat/schemas';
-import AppError from '../../errors/app_error.js';
-import { UserDataSource } from './user.data_source.js';
-import type { IUserDocument } from './user.interface.js';
-import { User } from './user.model.js';
 
 const createUserIntoDb = async (payload: CreateUserServerType): Promise<IUserDocument> => {
 	// check if the requested user is already exist or not

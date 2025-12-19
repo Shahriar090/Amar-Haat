@@ -1,6 +1,6 @@
+import type { IUserDocument } from '@/app/modules/user/user.interface';
+import { User } from '@/app/modules/user/user.model';
 import type { CreateUserServerType, UpdateUserServerType } from '@amar-haat/schemas';
-import type { IUserDocument } from './user.interface.js';
-import { User } from './user.model.js';
 
 export const UserDataSource = {
 	// create user

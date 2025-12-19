@@ -1,8 +1,8 @@
 import express, { type Router } from 'express';
 
+import validateRequest from '@/app/middlewares/validate_request';
+import { UserControllers } from '@/app/modules/user/user.controllers';
 import { CreateUserServerReqSchema, UpdateUserServerReqSchema } from '@amar-haat/schemas';
-import validateRequest from '../../middlewares/validate_request.js';
-import { UserControllers } from './user.controllers.js';
 const router: Router = express.Router();
 
 router.route('/create-user').post(validateRequest(CreateUserServerReqSchema), UserControllers.createUser);

@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 // import config from '../../config/index.js';
 import config from '@/app/config/index';
-import type { IUserDocument, UserStaticMethods } from './user.interface.js';
+import type { IUserDocument, UserStaticMethods } from '@/app/modules/user/user.interface';
 
 const UserNameSchema = new Schema<UserNameType>(
 	{

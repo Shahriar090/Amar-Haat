@@ -1,5 +1,3 @@
-import type { RefreshSessionType } from '../../../../../../shared/schemas/sessions/refresh.session.schema';
-
 import config from '@/app/config';
 import AppError from '@/app/errors/app_error';
 import {
@@ -11,11 +9,11 @@ import {
 
 import { SessionServices } from '@/app/modules/sessions/sessions.services';
 import { User } from '@/app/modules/user/user.model';
+import type { AuthType, RefreshSessionType } from '@amar-haat/schemas';
 import type { Request } from 'express';
 import httpStatus from 'http-status';
 import type { JwtPayload } from 'jsonwebtoken';
 import type { Types } from 'mongoose';
-import type { AuthType } from '../../../../../../shared/schemas/auth/auth.types';
 
 const loginUser = async (payload: AuthType) => {
 	// check if the user is exist first
