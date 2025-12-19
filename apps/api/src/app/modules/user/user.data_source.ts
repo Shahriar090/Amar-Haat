@@ -1,8 +1,4 @@
-import {
-	type CreateUserServerType,
-	type UpdateUserServerType,
-} from './../../../../../../shared/schemas/user/server/user.server.types';
-
+import type { CreateUserServerType, UpdateUserServerType } from '@amar-haat/schemas';
 import type { IUserDocument } from './user.interface.js';
 import { User } from './user.model.js';
 

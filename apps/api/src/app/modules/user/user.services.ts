@@ -1,8 +1,6 @@
 import httpStatus from 'http-status';
-import type {
-	CreateUserServerType,
-	UpdateUserServerType,
-} from '../../../../../../shared/schemas/user/server/user.server.types.js';
+
+import type { CreateUserServerType, UpdateUserServerType } from '@amar-haat/schemas';
 import AppError from '../../errors/app_error.js';
 import { UserDataSource } from './user.data_source.js';
 import type { IUserDocument } from './user.interface.js';
