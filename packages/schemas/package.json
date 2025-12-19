@@ -1,0 +1,23 @@
+{
+	"name": "@amar-haat/schemas",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.14.0",
+	"exports": {
+		".": {
+			"types": "./index.ts",
+			"import": "./index.ts"
+		}
+	},
+	"dependencies": {
+		"mongoose": "^8.19.2",
+		"zod": "^4.1.12"
+	}
+}
