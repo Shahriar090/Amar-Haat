@@ -84,6 +84,21 @@ const addAddress = asyncHandler(async (req, res) => {
 	});
 });
 
+// update address
+const updateAddress = asyncHandler(async (req, res) => {
+	const { userId, addressId } = req.params;
+	const { address } = req.body;
+
+	const result = await UserServices.updateAddress(userId as string, addressId as string, address);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: 'Address Updated Successfully',
+		data: result,
+	});
+});
+
 export const UserControllers = {
 	createUser,
 	getUser,
@@ -91,4 +106,5 @@ export const UserControllers = {
 	updateUser,
 	deleteUser,
 	addAddress,
+	updateAddress,
 };

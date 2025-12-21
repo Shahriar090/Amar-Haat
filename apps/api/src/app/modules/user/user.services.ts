@@ -1,4 +1,5 @@
 import type { AddressType } from '@shared/schemas/common/address.schema.js';
+import type { UpdateAddressType } from '@shared/schemas/user/address/update.address.schema.js';
 import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
 import httpStatus from 'http-status';
 import AppError from '../../errors/app_error.js';
@@ -91,6 +92,21 @@ const addAddress = async (id: string, address: AddressType[]) => {
 	return result;
 };
 
+// update address
+const updateAddress = async (userId: string, addressId: string, payload: UpdateAddressType) => {
+	if (Object.keys(payload).length === 0) {
+		throw new AppError(httpStatus.BAD_REQUEST, 'No Fields Provided For Update', 'NoFieldProvided');
+	}
+
+	const updatedAddress = await UserDataSource.updateAddress(userId, addressId, payload);
+
+	if (!updatedAddress) {
+		throw new AppError(httpStatus.BAD_REQUEST, 'User Or Address Not Found', 'UserOrAddressNotFound');
+	}
+
+	return updatedAddress;
+};
+
 export const UserServices = {
 	createUserIntoDb,
 	getUserFromDb,
@@ -98,4 +114,5 @@ export const UserServices = {
 	updateUserIntoDB,
 	deleteUserFromDb,
 	addAddress,
+	updateAddress,
 };

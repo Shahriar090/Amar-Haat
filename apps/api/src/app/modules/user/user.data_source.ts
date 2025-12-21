@@ -1,4 +1,5 @@
 import type { AddressType } from '@shared/schemas/common/address.schema.js';
+import type { UpdateAddressType } from '@shared/schemas/user/address/update.address.schema.js';
 import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
 import type { IUserDocument } from './user.interface.js';
 import { User } from './user.model.js';
@@ -35,5 +36,31 @@ export const UserDataSource = {
 	// add address
 	addAddress: async (id: string, address: AddressType[]) => {
 		return User.findByIdAndUpdate(id, { $push: { address: { $each: address } } }, { new: true, runValidators: true });
+	},
+
+	// update address
+	updateAddress: async (userId: string, addressId: string, payload: UpdateAddressType) => {
+		const updateOperation: Record<string, unknown> = {};
+
+		for (const key in payload) {
+			updateOperation[`address.$[addr].${key}`] = payload[key];
+		}
+
+		const updatedAddress = await User.findByIdAndUpdate(
+			userId,
+
+			// apply the dynamic updates
+			{ $set: updateOperation },
+			{
+				new: true,
+				runValidators: true,
+				arrayFilters: [
+					{
+						'addr._id': addressId,
+					},
+				],
+			},
+		);
+		return updatedAddress;
 	},
 };
