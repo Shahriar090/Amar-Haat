@@ -107,6 +107,17 @@ const updateAddress = async (userId: string, addressId: string, payload: UpdateA
 	return updatedAddress;
 };
 
+// remove address
+const removeAddress = async (userId: string, addressId: string) => {
+	const result = await UserDataSource.removeAddress(userId, addressId);
+
+	if (!result) {
+		throw new AppError(httpStatus.NOT_FOUND, 'Address Not Found', 'AddressNotFound');
+	}
+
+	return result;
+};
+
 export const UserServices = {
 	createUserIntoDb,
 	getUserFromDb,
@@ -115,4 +126,5 @@ export const UserServices = {
 	deleteUserFromDb,
 	addAddress,
 	updateAddress,
+	removeAddress,
 };

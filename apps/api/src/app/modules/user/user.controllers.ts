@@ -99,6 +99,19 @@ const updateAddress = asyncHandler(async (req, res) => {
 	});
 });
 
+// remove address
+const removeAddress = asyncHandler(async (req, res) => {
+	const { userId, addressId } = req.params;
+	const result = await UserServices.removeAddress(userId as string, addressId as string);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: 'Address Removed Successfully',
+		data: result,
+	});
+});
+
 export const UserControllers = {
 	createUser,
 	getUser,
@@ -107,4 +120,5 @@ export const UserControllers = {
 	deleteUser,
 	addAddress,
 	updateAddress,
+	removeAddress,
 };

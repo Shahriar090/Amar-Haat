@@ -17,4 +17,6 @@ router
 	.route('/update-address/:userId/address/:addressId')
 	.patch(validateRequest(updateAddressSchema), UserControllers.updateAddress);
 
+router.route('/remove-address/:userId/address/:addressId').delete(UserControllers.removeAddress);
+
 export const UserRoutes = router;

@@ -63,4 +63,9 @@ export const UserDataSource = {
 		);
 		return updatedAddress;
 	},
+
+	// remove address
+	removeAddress: async (userId: string, addressId: string) => {
+		return User.findByIdAndUpdate(userId, { $pull: { address: { _id: addressId } } }, { new: true });
+	},
 };
