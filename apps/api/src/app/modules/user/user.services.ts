@@ -1,6 +1,9 @@
-import type { AddressType } from '@shared/schemas/common/address.schema.js';
-import type { UpdateAddressType } from '@shared/schemas/user/address/update.address.schema.js';
-import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
+import type {
+	AddressType,
+	CreateUserServerType,
+	UpdateAddressServerType,
+	UpdateUserServerType,
+} from '@aamarhaat/shared';
 import httpStatus from 'http-status';
 import AppError from '../../errors/app_error.js';
 import { UserDataSource } from './user.data_source.js';
@@ -93,7 +96,7 @@ const addAddress = async (id: string, address: AddressType[]) => {
 };
 
 // update address
-const updateAddress = async (userId: string, addressId: string, payload: UpdateAddressType) => {
+const updateAddress = async (userId: string, addressId: string, payload: UpdateAddressServerType) => {
 	if (Object.keys(payload).length === 0) {
 		throw new AppError(httpStatus.BAD_REQUEST, 'No Fields Provided For Update', 'NoFieldProvided');
 	}

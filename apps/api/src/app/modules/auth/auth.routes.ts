@@ -1,4 +1,4 @@
-import { AuthSchema } from '@shared/schemas/auth/auth.schema.js';
+import { AuthSchema } from '@aamarhaat/shared';
 import express, { type Router } from 'express';
 import validateRequest from '../../middlewares/validate_request.js';
 import { AuthControllers } from './auth.controllers.js';

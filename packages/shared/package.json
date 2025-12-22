@@ -1,0 +1,23 @@
+{
+  "name": "@aamarhaat/shared",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "mongoose": "^8.19.2"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97"
+  }
+}

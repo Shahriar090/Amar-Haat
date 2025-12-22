@@ -1,7 +1,9 @@
-import { AddAddressRequestSchema } from '@shared/schemas/user/address/add.address.schema.js';
-import { updateAddressSchema } from '@shared/schemas/user/address/update.address.schema.js';
-import { CreateUserServerReqSchema } from '@shared/schemas/user/server/create.user.req.schema.js';
-import { UpdateUserServerReqSchema } from '@shared/schemas/user/server/update.user.req.schema.js';
+import {
+	AddAddressRequestSchema,
+	CreateUserServerReqSchema,
+	UpdateAddressreqSchema,
+	UpdateUserServerReqSchema,
+} from '@aamarhaat/shared';
 import express, { type Router } from 'express';
 import validateRequest from '../../middlewares/validate_request.js';
 import { UserControllers } from './user.controllers.js';
@@ -15,7 +17,7 @@ router.route('/delete/:id').delete(UserControllers.deleteUser);
 router.route('/add-address/:id').post(validateRequest(AddAddressRequestSchema), UserControllers.addAddress);
 router
 	.route('/update-address/:userId/address/:addressId')
-	.patch(validateRequest(updateAddressSchema), UserControllers.updateAddress);
+	.patch(validateRequest(UpdateAddressreqSchema), UserControllers.updateAddress);
 
 router.route('/remove-address/:userId/address/:addressId').delete(UserControllers.removeAddress);
 

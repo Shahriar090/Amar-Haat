@@ -1,3 +1,6 @@
+ # all frontend and backend apps
+
 packages:
-  - "apps/*"       # all frontend and backend apps
+  - "apps/*"
+  - "packages/*"
  

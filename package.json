@@ -9,7 +9,13 @@
 		"prepare": "husky install",
 		"format": "biome format --fix .",
 		"lint": "biome check .",
-		"lint:fix": "biome check --fix ."
+		"lint:fix": "biome check --fix .",
+		"build": "pnpm -r build",
+		"build:api": "pnpm --filter api build",
+		"build:web": "pnpm --filter web build",
+		"dev": "pnpm -r dev",
+		"build:shared": "pnpm --filter @aamarhaat/shared build"
+
 	},
 	"keywords": [],
 	"author": "",
@@ -19,7 +25,8 @@
 		"@biomejs/biome": "2.3.2",
 		"@commitlint/cli": "^20.1.0",
 		"@commitlint/config-conventional": "^20.0.0",
-		"husky": "^9.1.7"
+		"husky": "^9.1.7",
+		"typescript": "^5.9.3"
 	},
 	"dependencies": {
 		"zod": "^4.1.12"

@@ -1,5 +1,4 @@
-import type { AddressType } from '@shared/schemas/common/address.schema.js';
-import type { UserNameType } from '@shared/schemas/common/user_name.schema.js';
+import type { AddressType, UserNameType } from '@aamarhaat/shared';
 import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 import config from '../../config/index.js';
@@ -102,7 +101,7 @@ UserSchema.pre('save', async function (next) {
 	if (!this.isModified('password')) return next();
 
 	try {
-		this.password = await bcrypt.hash(this.password, Number(config.bcrypt_salt_round));
+		this.password = await bcrypt.hash(this.password as string, Number(config.bcrypt_salt_round));
 		next();
 	} catch (err: unknown) {
 		next(err as Error);

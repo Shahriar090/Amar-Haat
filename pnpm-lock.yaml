@@ -24,9 +24,15 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   apps/api:
     dependencies:
+      '@aamarhaat/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@types/jsonwebtoken':
         specifier: ^9.0.10
         version: 9.0.10
@@ -60,6 +66,9 @@ importers:
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
     devDependencies:
       '@types/bcrypt':
         specifier: ^6.0.0
@@ -94,6 +103,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@aamarhaat/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -137,6 +149,16 @@ importers:
       vite:
         specifier: ^7.2.4
         version: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(tsx@4.20.6)
+
+  packages/shared:
+    dependencies:
+      mongoose:
+        specifier: ^8.19.2
+        version: 8.19.2
+    devDependencies:
+      '@types/mongoose':
+        specifier: ^5.11.97
+        version: 5.11.97
 
 packages:
 

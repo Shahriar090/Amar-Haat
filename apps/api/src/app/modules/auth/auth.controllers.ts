@@ -1,4 +1,4 @@
-import type { AuthPayloadType } from '@shared/schemas/auth/auth.types.js';
+import type { AuthPayloadType } from '@aamarhaat/shared';
 import httpStatus from 'http-status';
 import asyncHandler from '../../utils/async_handler.js';
 import sendResponse from '../../utils/send_response.js';

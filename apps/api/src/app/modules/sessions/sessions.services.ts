@@ -1,4 +1,4 @@
-import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
+import type { RefreshSessionType } from '@aamarhaat/shared';
 import { RefreshSession } from './session.model.js';
 import type { SessionRefreshDocument } from './sessions.interface.js';
 

@@ -1,5 +1,5 @@
-import { AddressSchema } from '@shared/schemas/common/address.schema.js';
 import { z } from 'zod';
+import { AddressSchema } from '../../common/address.schema.js';
 
 export const AddAddressRequestSchema = z.object({
 	body: z.object({

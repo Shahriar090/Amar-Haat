@@ -1,6 +1,6 @@
 // instance methods
 
-import type { CreateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
+import type { CreateUserServerType } from '@aamarhaat/shared';
 import type { Document, Model } from 'mongoose';
 
 export interface UserInstanceMethods {

@@ -1,5 +1,4 @@
-import type { AuthPayloadType } from '@shared/schemas/auth/auth.types.js';
-import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
+import type { AuthPayloadType, RefreshSessionType } from '@aamarhaat/shared';
 import type { Request } from 'express';
 import httpStatus from 'http-status';
 import type { JwtPayload } from 'jsonwebtoken';
