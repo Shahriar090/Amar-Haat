@@ -1,13 +1,23 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"rootDir": "./src",
-		"outDir": "../../dist/apps/api",
+		"rootDir": "src/",
+		// "outDir": "../../dist/apps/api",
+		"outDir": "./dist",
 		"baseUrl": ".",
+		// "isolatedModules": true,
+		// "resolveJsonModule": true,
+		"noEmit": true,
+		"removeComments": true,
+		// "allowSyntheticDefaultImports": true,
 		"paths": {
 			"@/*": ["src/*"],
 			"@amar-haat/schemas": ["../../packages/schemas/index.ts"]
 		}
+	},
+	"tsc-alias": {
+		"verbose": false,
+		"resolveFullPaths": true
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist"],

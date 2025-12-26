@@ -4,7 +4,8 @@
 	"type": "module",
 	"description": "",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "swc src --out-dir ./dist --source-maps --copy-files && tsc-alias -p tsconfig.json"
 	},
 	"keywords": [],
 	"author": "",
@@ -12,8 +13,8 @@
 	"packageManager": "pnpm@10.14.0",
 	"exports": {
 		".": {
-			"types": "./index.ts",
-			"import": "./index.ts"
+			"types": "./src/index.ts",
+			"import": "./src//index.ts"
 		}
 	},
 	"dependencies": {
