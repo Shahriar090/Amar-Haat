@@ -1,10 +1,12 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "@amar-haat/config/tsconfig.json",
 	"compilerOptions": {
 		"rootDir": ".",
 		"outDir": "./dist",
+		"tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
 		"declaration": true,
-		"emitDeclarationOnly": true
+		"emitDeclarationOnly": true,
+		"composite": true
 	},
 	"tsc-alias": {
 		"verbose": false,

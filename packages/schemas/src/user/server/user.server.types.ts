@@ -1,8 +1,8 @@
-import type { CreateUserServerReqSchema } from 'packages/schemas/src/user/server/create.user.req.schema';
-import type { UpdateUserServerReqSchema } from 'packages/schemas/src/user/server/update.user.req.schema';
-import type { CreateUserServerSchema } from 'packages/schemas/src/user/server/user.create.server.schema';
-import type { UpdateUserServerSchema } from 'packages/schemas/src/user/server/user.update.server.schema';
 import type z from 'zod';
+import type { CreateUserServerReqSchema } from './create.user.req.schema';
+import type { UpdateUserServerReqSchema } from './update.user.req.schema';
+import type { CreateUserServerSchema } from './user.create.server.schema';
+import type { UpdateUserServerSchema } from './user.update.server.schema';
 
 export type CreateUserServerType = z.infer<typeof CreateUserServerSchema>;
 export type CreateUserServerReqType = z.infer<typeof CreateUserServerReqSchema>;
