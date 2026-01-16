@@ -24,11 +24,17 @@
 		"@swc/cli": "^0.7.9",
 		"@swc/core": "^1.15.7",
 		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
 		"tsc-alias": "^1.8.16",
 		"turbo": "^2.7.4",
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
 		"zod": "^4.1.12"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,json}": [
+			"biome check --write --no-errors-on-unmatched"
+		]
 	}
 }
