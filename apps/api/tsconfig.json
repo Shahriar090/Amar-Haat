@@ -1,48 +1,26 @@
 {
-	// extending the root tsconfig.json file
-	"extends": "../../tsconfig.base.json",
-	// Visit https://aka.ms/tsconfig to read more about this file
+	"extends": "@amar-haat/config/tsconfig.json",
 	"compilerOptions": {
-		// File Layout
-		// "rootDir": "./src",
+		"composite": true,
+		"rootDir": "src/",
+		// "outDir": "../../dist/apps/api",
 		"outDir": "./dist",
-
-		// Environment Settings
-		// See also https://aka.ms/tsconfig/module
-		"module": "nodenext",
-		"target": "esnext",
-		"types": [],
-		// For nodejs:
-		// "lib": ["esnext"],
-		// "types": ["node"],
-		// and npm install -D @types/node
-
-		// Other Outputs
-		"sourceMap": true,
-		"declaration": true,
-		"declarationMap": true,
-
-		// Stricter Typechecking Options
-		"noUncheckedIndexedAccess": true,
-		"exactOptionalPropertyTypes": true,
-
-		// Style Options
-		// "noImplicitReturns": true,
-		// "noImplicitOverride": true,
-		// "noUnusedLocals": true,
-		// "noUnusedParameters": true,
-		// "noFallthroughCasesInSwitch": true,
-		// "noPropertyAccessFromIndexSignature": true,
-
-		// Recommended Options
-		"strict": true,
-		"jsx": "react-jsx",
-		"verbatimModuleSyntax": true,
-		"isolatedModules": true,
-		"noUncheckedSideEffectImports": true,
-		"moduleDetection": "force",
-		"skipLibCheck": true
+		"tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
+		"baseUrl": ".",
+		// "isolatedModules": true,
+		// "resolveJsonModule": true,
+		"removeComments": true,
+		// "allowSyntheticDefaultImports": true,
+		"paths": {
+			"@/*": ["src/*"]
+			// "@amar-haat/schemas": ["../../packages/schemas/index.ts"]
+		}
 	},
-	"include": ["src", "../../shared"],
-	"exclude": ["node_modules", "dist", "build"]
+	// "tsc-alias": {
+	// 	"verbose": false,
+	// 	"resolveFullPaths": true
+	// },
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"],
+	"references": [{ "path": "../../packages/schemas" }]
 }

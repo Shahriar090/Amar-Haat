@@ -1,9 +1,9 @@
-import type { AuthPayloadType } from '@shared/schemas/auth/auth.types.js';
+import { AuthServices } from '@/app/modules/auth/auth.services';
+import { setCookie, clearCookie } from '@/app/modules/auth/auth.utils';
+import asyncHandler from '@/app/utils/async_handler';
+import sendResponse from '@/app/utils/send_response';
+import type { AuthPayloadType } from '@amar-haat/schemas';
 import httpStatus from 'http-status';
-import asyncHandler from '../../utils/async_handler.js';
-import sendResponse from '../../utils/send_response.js';
-import { AuthServices } from './auth.services.js';
-import { clearCookie, setCookie } from './auth.utils.js';
 
 const loginUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;

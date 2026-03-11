@@ -1,9 +1,10 @@
-import type { AddressType } from '@shared/schemas/common/address.schema.js';
-import type { UserNameType } from '@shared/schemas/common/user_name.schema.js';
+import type { UserNameType } from '@amar-haat/schemas';
+import type { AddressType } from '@amar-haat/schemas';
 import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
-import config from '../../config/index.js';
-import type { IUserDocument, UserStaticMethods } from './user.interface.js';
+// import config from '../../config/index.js';
+import config from '@/app/config/index';
+import type { IUserDocument, UserStaticMethods } from '@/app/modules/user/user.interface';
 
 const UserNameSchema = new Schema<UserNameType>(
 	{

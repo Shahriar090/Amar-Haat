@@ -1,8 +1,7 @@
-import type { AddressType } from '@shared/schemas/common/address.schema.js';
-import type { UpdateAddressType } from '@shared/schemas/user/address/update.address.schema.js';
-import type { CreateUserServerType, UpdateUserServerType } from '@shared/schemas/user/server/user.server.types.js';
-import type { IUserDocument } from './user.interface.js';
-import { User } from './user.model.js';
+import type { IUserDocument } from '@/app/modules/user/user.interface';
+import { User } from '@/app/modules/user/user.model';
+import type { CreateUserServerType, UpdateUserServerType } from '@amar-haat/schemas';
+import type { UpdateAddressType, AddressType } from '@amar-haat/schemas';
 
 export const UserDataSource = {
 	// create user

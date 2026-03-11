@@ -1,19 +1,23 @@
 {
 	"name": "api",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"build": "tsc",
-		"start:dev": "NODE_ENV=development tsx watch src/server.ts",
-		"start:prod": "NODE_ENV=production node dist/server.js"
+		"build": "swc src --out-dir ./dist/api --source-maps --copy-files",
+		"dev": "NODE_ENV=development tsx watch src/server.ts",
+		"start:prod": "NODE_ENV=production node ./dist/api/src/server.js",
+		"format": "biome format --fix .",
+		"lint": "biome check .",
+		"lint:fix": "biome check --fix ."
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"packageManager": "pnpm@10.14.0",
 	"devDependencies": {
+		"@amar-haat/config": "workspace:*",
 		"@types/bcrypt": "^6.0.0",
 		"@types/cookie-parser": "^1.4.10",
 		"@types/cors": "^2.8.19",
@@ -22,10 +26,10 @@
 		"@types/mongoose": "^5.11.97",
 		"@types/node": "^24.9.2",
 		"ts-node-dev": "^2.0.0",
-		"tsx": "^4.20.6",
-		"typescript": "^5.9.3"
+		"tsx": "^4.20.6"
 	},
 	"dependencies": {
+		"@amar-haat/schemas": "workspace:*",
 		"@types/jsonwebtoken": "^9.0.10",
 		"bcrypt": "^6.0.0",
 		"cookie-parser": "^1.4.7",

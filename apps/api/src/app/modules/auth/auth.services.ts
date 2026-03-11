@@ -1,14 +1,19 @@
-import type { AuthPayloadType } from '@shared/schemas/auth/auth.types.js';
-import type { RefreshSessionType } from '@shared/schemas/sessions/refresh.session.types.js';
+import config from '@/app/config';
+import AppError from '@/app/errors/app_error';
+import {
+	generateAccessToken,
+	generateRefreshToken,
+	REFRESH_TOKEN_MAX_AGE_MS,
+	verifyJwt,
+} from '@/app/modules/auth/auth.utils';
+
+import { SessionServices } from '@/app/modules/sessions/sessions.services';
+import { User } from '@/app/modules/user/user.model';
+import type { AuthPayloadType, RefreshSessionType } from '@amar-haat/schemas';
 import type { Request } from 'express';
 import httpStatus from 'http-status';
 import type { JwtPayload } from 'jsonwebtoken';
 import type { Types } from 'mongoose';
-import config from '../../config/index.js';
-import AppError from '../../errors/app_error.js';
-import { SessionServices } from '../sessions/sessions.services.js';
-import { User } from '../user/user.model.js';
-import { generateAccessToken, generateRefreshToken, REFRESH_TOKEN_MAX_AGE_MS, verifyJwt } from './auth.utils.js';
 
 const loginUser = async (payload: AuthPayloadType) => {
 	const { email, password, ip, userAgent } = payload;

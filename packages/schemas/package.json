@@ -1,0 +1,27 @@
+{
+	"name": "@amar-haat/schemas",
+	"version": "0.0.1",
+	"type": "module",
+	"description": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "swc src --out-dir ./dist --source-maps --copy-files --config-file ../../.swcrc && tsc -b --emitDeclarationOnly"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.14.0",
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./dist/src/index.js"
+		}
+	},
+	"dependencies": {
+		"mongoose": "^8.19.2",
+		"zod": "^4.1.12"
+	},
+	"devDependencies": {
+		"@amar-haat/config": "workspace:*"
+	}
+}

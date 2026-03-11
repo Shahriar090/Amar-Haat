@@ -1,7 +1,7 @@
+import app from '@/app';
+import config from '@/app/config';
 import mongoose from 'mongoose';
 import type { Server } from 'node:http';
-import app from './app.js';
-import config from './app/config/index.js';
 const PORT = config.port || 3000;
 // biome-ignore lint/correctness/noUnusedVariables: <the variable 'server' will be used later>
 let server: Server;

@@ -1,6 +1,6 @@
+import { envValidationSchema } from '@/app/config/env_validation_schema';
 import dotEnv from 'dotenv';
 import path from 'node:path';
-import { envValidationSchema } from './env_validation_schema.js';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 

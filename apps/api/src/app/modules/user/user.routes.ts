@@ -1,10 +1,9 @@
-import { AddAddressRequestSchema } from '@shared/schemas/user/address/add.address.schema.js';
-import { updateAddressSchema } from '@shared/schemas/user/address/update.address.schema.js';
-import { CreateUserServerReqSchema } from '@shared/schemas/user/server/create.user.req.schema.js';
-import { UpdateUserServerReqSchema } from '@shared/schemas/user/server/update.user.req.schema.js';
 import express, { type Router } from 'express';
-import validateRequest from '../../middlewares/validate_request.js';
-import { UserControllers } from './user.controllers.js';
+
+import validateRequest from '@/app/middlewares/validate_request';
+import { UserControllers } from '@/app/modules/user/user.controllers';
+import { CreateUserServerReqSchema, UpdateUserServerReqSchema } from '@amar-haat/schemas';
+import { AddAddressRequestSchema, updateAddressSchema } from '@amar-haat/schemas';
 const router: Router = express.Router();
 
 router.route('/create-user').post(validateRequest(CreateUserServerReqSchema), UserControllers.createUser);
