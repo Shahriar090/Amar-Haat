@@ -1,6 +1,5 @@
-import { AddressSchema } from '@shared/schemas/common/address.schema.js';
 import { z } from 'zod';
-import { PasswordSchema, SellerStatusEnum } from '../../common';
+import { AddressSchema, PasswordSchema, SellerStatusEnum } from '../../common';
 import { BaseUserSchema } from '../base/user.base.schema';
 
 export const CreateUserServerSchema = BaseUserSchema.extend({
